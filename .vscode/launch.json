@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run Calorie Tracker",
+      "request": "launch",
+      "mainClass": "com.calorietracker.CalorieTrackerApp",
+      "projectName": "calorie-tracker"
+    }
+  ]
+}

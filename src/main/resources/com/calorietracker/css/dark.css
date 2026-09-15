@@ -1,0 +1,22 @@
+/* Dark theme palette, modeled after iOS/macOS system colors in Dark Mode. */
+.root {
+    -bg-primary: #000000;
+    -bg-secondary: #1C1C1E;
+    -bg-tertiary: #2C2C2E;
+    -bg-sidebar: #111113;
+
+    -text-primary: #FFFFFF;
+    -text-secondary: #98989D;
+
+    -separator: #38383A;
+    -track-color: #3A3A3C;
+    -hover-overlay: rgba(255, 255, 255, 0.08);
+    -shadow-color: rgba(0, 0, 0, 0.55);
+
+    -accent-blue: #0A84FF;
+    -accent-blue-translucent: rgba(10, 132, 255, 0.25);
+    -accent-green: #30D158;
+    -accent-red: #FF453A;
+    -accent-orange: #FF9F0A;
+    -accent-purple: #BF5AF2;
+}

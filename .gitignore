@@ -1,0 +1,10 @@
+target/
+*.class
+.classpath
+.project
+.settings/
+bin/
+.factorypath
+*.iml
+.idea/
+.DS_Store

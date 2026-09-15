@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" styleClass="edge-to-edge"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.calorietracker.ui.controller.CalendarController">
+    <VBox spacing="20" styleClass="page">
+        <padding>
+            <Insets top="28" right="32" bottom="32" left="32"/>
+        </padding>
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Label text="Kalender" styleClass="page-title"/>
+        </HBox>
+
+        <HBox spacing="20">
+            <VBox styleClass="card" spacing="14" HBox.hgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Button text="‹" styleClass="round-icon-button" onAction="#previousMonth"/>
+                    <Label fx:id="monthYearLabel" text="Monat Jahr" styleClass="card-title"/>
+                    <Button text="›" styleClass="round-icon-button" onAction="#nextMonth"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Heute" styleClass="pill-button" onAction="#jumpToToday"/>
+                </HBox>
+
+                <HBox fx:id="weekdayHeader" spacing="4"/>
+
+                <GridPane fx:id="dayGrid" hgap="4" vgap="4">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.28"/>
+                        <ColumnConstraints percentWidth="14.32"/>
+                    </columnConstraints>
+                </GridPane>
+            </VBox>
+
+            <VBox styleClass="card" spacing="10" minWidth="260" prefWidth="280">
+                <Label fx:id="selectedDateLabel" text="Datum wählen" styleClass="card-title" wrapText="true"/>
+                <Label fx:id="selectedCaloriesLabel" text="0 kcal" styleClass="ring-value"/>
+                <Separator/>
+                <VBox fx:id="selectedMacrosBox" spacing="6"/>
+                <Separator/>
+                <Label text="Einträge" styleClass="micro-label"/>
+                <VBox fx:id="selectedEntriesBox" spacing="6"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>
