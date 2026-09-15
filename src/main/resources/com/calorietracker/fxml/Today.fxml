@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+
+<ScrollPane fitToWidth="true" styleClass="edge-to-edge"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.calorietracker.ui.controller.TodayController">
+    <VBox spacing="20" styleClass="page">
+        <padding>
+            <Insets top="28" right="32" bottom="32" left="32"/>
+        </padding>
+
+        <!-- Header: date navigation -->
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Button text="‹" styleClass="round-icon-button" onAction="#previousDay"/>
+            <Label fx:id="dateLabel" text="Heute" styleClass="page-title"/>
+            <Button text="›" styleClass="round-icon-button" onAction="#nextDay"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Heute" styleClass="pill-button" onAction="#jumpToToday"/>
+        </HBox>
+
+        <!-- Summary: calorie ring + macros -->
+        <HBox spacing="20">
+            <StackPane styleClass="card" alignment="CENTER" minWidth="220" prefWidth="220">
+                <StackPane prefWidth="170" prefHeight="170" maxWidth="170" maxHeight="170">
+                    <Circle centerX="85" centerY="85" radius="72" fill="TRANSPARENT" styleClass="ring-track" strokeWidth="14"/>
+                    <Arc fx:id="calorieRingArc" centerX="85" centerY="85" radiusX="72" radiusY="72"
+                         startAngle="90" length="0" type="OPEN" fill="TRANSPARENT" strokeWidth="14"
+                         strokeLineCap="ROUND" styleClass="ring-progress"/>
+                    <VBox alignment="CENTER" spacing="2">
+                        <Label fx:id="caloriesConsumedLabel" text="0" styleClass="ring-value"/>
+                        <Label text="kcal gegessen" styleClass="ring-unit"/>
+                        <Label fx:id="caloriesRemainingLabel" text="Ziel: 2000 kcal" styleClass="ring-sub"/>
+                    </VBox>
+                </StackPane>
+            </StackPane>
+
+            <VBox styleClass="card" spacing="14" HBox.hgrow="ALWAYS">
+                <Label text="Makronährstoffe" styleClass="card-title"/>
+
+                <VBox spacing="6">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Protein" styleClass="protein-label" minWidth="70"/>
+                        <ProgressBar fx:id="proteinBar" progress="0" styleClass="protein-bar" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Label fx:id="proteinValueLabel" text="0 / 0 g" styleClass="macro-value" minWidth="90"/>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Kohlenhydrate" styleClass="carbs-label" minWidth="70"/>
+                        <ProgressBar fx:id="carbsBar" progress="0" styleClass="carbs-bar" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Label fx:id="carbsValueLabel" text="0 / 0 g" styleClass="macro-value" minWidth="90"/>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Fett" styleClass="fat-label" minWidth="70"/>
+                        <ProgressBar fx:id="fatBar" progress="0" styleClass="fat-bar" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                        <Label fx:id="fatValueLabel" text="0 / 0 g" styleClass="macro-value" minWidth="90"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+
+        <!-- Micronutrients -->
+        <VBox styleClass="card" spacing="12">
+            <Label text="Mikronährstoffe" styleClass="card-title"/>
+            <GridPane hgap="24" vgap="12">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="50"/>
+                </columnConstraints>
+
+                <VBox spacing="4" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                    <HBox><Label text="Ballaststoffe" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="fiberValueLabel" text="0 / 30 g" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="fiberBar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="4" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <HBox><Label text="Zucker" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="sugarValueLabel" text="0 / 50 g" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="sugarBar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="4" GridPane.rowIndex="1" GridPane.columnIndex="0">
+                    <HBox><Label text="Natrium" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="sodiumValueLabel" text="0 / 2300 mg" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="sodiumBar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="4" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <HBox><Label text="Kalium" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="potassiumValueLabel" text="0 / 3500 mg" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="potassiumBar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="4" GridPane.rowIndex="2" GridPane.columnIndex="0">
+                    <HBox><Label text="Calcium" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="calciumValueLabel" text="0 / 1000 mg" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="calciumBar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="4" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                    <HBox><Label text="Eisen" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="ironValueLabel" text="0 / 14 mg" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="ironBar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="4" GridPane.rowIndex="3" GridPane.columnIndex="0">
+                    <HBox><Label text="Vitamin C" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="vitaminCValueLabel" text="0 / 90 mg" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="vitaminCBar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+                <VBox spacing="4" GridPane.rowIndex="3" GridPane.columnIndex="1">
+                    <HBox><Label text="Vitamin A" styleClass="micro-label"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="vitaminAValueLabel" text="0 / 900 µg" styleClass="micro-value"/></HBox>
+                    <ProgressBar fx:id="vitaminABar" progress="0" styleClass="micro-bar" maxWidth="Infinity"/>
+                </VBox>
+            </GridPane>
+        </VBox>
+
+        <!-- Meals -->
+        <VBox fx:id="mealBreakfastCard" styleClass="card" spacing="10">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Frühstück" styleClass="card-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="+ Hinzufügen" styleClass="pill-button" onAction="#addBreakfast"/>
+            </HBox>
+            <VBox fx:id="mealBreakfastBox" spacing="6"/>
+        </VBox>
+
+        <VBox fx:id="mealLunchCard" styleClass="card" spacing="10">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Mittagessen" styleClass="card-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="+ Hinzufügen" styleClass="pill-button" onAction="#addLunch"/>
+            </HBox>
+            <VBox fx:id="mealLunchBox" spacing="6"/>
+        </VBox>
+
+        <VBox fx:id="mealDinnerCard" styleClass="card" spacing="10">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Abendessen" styleClass="card-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="+ Hinzufügen" styleClass="pill-button" onAction="#addDinner"/>
+            </HBox>
+            <VBox fx:id="mealDinnerBox" spacing="6"/>
+        </VBox>
+
+        <VBox fx:id="mealSnackCard" styleClass="card" spacing="10">
+            <HBox alignment="CENTER_LEFT">
+                <Label text="Snacks" styleClass="card-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="+ Hinzufügen" styleClass="pill-button" onAction="#addSnack"/>
+            </HBox>
+            <VBox fx:id="mealSnackBox" spacing="6"/>
+        </VBox>
+    </VBox>
+</ScrollPane>

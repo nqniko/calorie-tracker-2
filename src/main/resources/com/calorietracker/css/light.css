@@ -1,0 +1,22 @@
+/* Light theme palette, modeled after iOS/macOS system colors. */
+.root {
+    -bg-primary: #F2F2F7;
+    -bg-secondary: #FFFFFF;
+    -bg-tertiary: #F0F0F5;
+    -bg-sidebar: #FBFBFD;
+
+    -text-primary: #1C1C1E;
+    -text-secondary: #6E6E73;
+
+    -separator: #E5E5EA;
+    -track-color: #E5E5EA;
+    -hover-overlay: rgba(60, 60, 67, 0.06);
+    -shadow-color: rgba(0, 0, 0, 0.10);
+
+    -accent-blue: #0A84FF;
+    -accent-blue-translucent: rgba(10, 132, 255, 0.14);
+    -accent-green: #30D158;
+    -accent-red: #FF453A;
+    -accent-orange: #FF9F0A;
+    -accent-purple: #BF5AF2;
+}

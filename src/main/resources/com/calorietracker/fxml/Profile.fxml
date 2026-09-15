@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" styleClass="edge-to-edge"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.calorietracker.ui.controller.ProfileController">
+    <VBox spacing="20" styleClass="page">
+        <padding>
+            <Insets top="28" right="32" bottom="32" left="32"/>
+        </padding>
+
+        <Label text="Profil" styleClass="page-title"/>
+
+        <HBox spacing="20">
+            <VBox styleClass="card" spacing="16" prefWidth="420" minWidth="360">
+                <Label text="Persönliche Daten" styleClass="card-title"/>
+
+                <VBox spacing="6">
+                    <Label text="Name" styleClass="field-label"/>
+                    <TextField fx:id="nameField" promptText="Dein Name"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="Geschlecht" styleClass="field-label"/>
+                    <HBox spacing="0" styleClass="segmented-control">
+                        <fx:define>
+                            <ToggleGroup fx:id="genderToggleGroup"/>
+                        </fx:define>
+                        <ToggleButton fx:id="genderMaleToggle" text="Männlich" toggleGroup="$genderToggleGroup" styleClass="segment-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                        <ToggleButton fx:id="genderFemaleToggle" text="Weiblich" toggleGroup="$genderToggleGroup" styleClass="segment-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </VBox>
+
+                <HBox spacing="16">
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Alter" styleClass="field-label"/>
+                        <Spinner fx:id="ageSpinner" editable="true"/>
+                    </VBox>
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Größe (cm)" styleClass="field-label"/>
+                        <TextField fx:id="heightField" promptText="z. B. 175"/>
+                    </VBox>
+                    <VBox spacing="6" HBox.hgrow="ALWAYS">
+                        <Label text="Gewicht (kg)" styleClass="field-label"/>
+                        <TextField fx:id="weightField" promptText="z. B. 75"/>
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="6">
+                    <Label text="Aktivitätslevel" styleClass="field-label"/>
+                    <ComboBox fx:id="activityCombo" maxWidth="Infinity"/>
+                </VBox>
+
+                <VBox spacing="6">
+                    <Label text="Ziel" styleClass="field-label"/>
+                    <HBox spacing="0" styleClass="segmented-control">
+                        <fx:define>
+                            <ToggleGroup fx:id="goalToggleGroup"/>
+                        </fx:define>
+                        <ToggleButton fx:id="goalLoseToggle" text="Abnehmen" toggleGroup="$goalToggleGroup" styleClass="segment-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                        <ToggleButton fx:id="goalMaintainToggle" text="Halten" toggleGroup="$goalToggleGroup" styleClass="segment-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                        <ToggleButton fx:id="goalGainToggle" text="Zunehmen" toggleGroup="$goalToggleGroup" styleClass="segment-button" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </VBox>
+
+                <Button text="Berechnen &amp; Speichern" styleClass="primary-button" onAction="#saveProfile" maxWidth="Infinity"/>
+                <Label fx:id="savedNoticeLabel" text="Gespeichert!" styleClass="saved-notice" visible="false" managed="false"/>
+            </VBox>
+
+            <VBox styleClass="card" spacing="14" prefWidth="320" minWidth="280">
+                <Label text="Deine Empfehlung" styleClass="card-title"/>
+                <Label text="Grundumsatz (BMR)" styleClass="field-label"/>
+                <Label fx:id="bmrValueLabel" text="– kcal / Tag" styleClass="ring-sub"/>
+
+                <Label text="Gesamtumsatz (TDEE)" styleClass="field-label"/>
+                <Label fx:id="tdeeValueLabel" text="– kcal / Tag" styleClass="ring-sub"/>
+
+                <Separator/>
+
+                <Label text="Tägliches Kalorienziel" styleClass="field-label"/>
+                <Label fx:id="calorieGoalValueLabel" text="– kcal" styleClass="ring-value"/>
+
+                <Region prefHeight="6"/>
+
+                <Label fx:id="proteinGoalLabel" text="Protein: – g" styleClass="micro-value"/>
+                <Label fx:id="carbsGoalLabel" text="Kohlenhydrate: – g" styleClass="micro-value"/>
+                <Label fx:id="fatGoalLabel" text="Fett: – g" styleClass="micro-value"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>
